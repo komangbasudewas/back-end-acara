@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 import { encrypt } from '../utils/encryption';
+import { renderMailHtml, sendMail } from '../utils/mail/mail';
+import { CLIENT_HOST } from '../utils/env';
 
 export interface User {
   fullName: string;
@@ -10,6 +12,7 @@ export interface User {
   profilePicture: string;
   isActive: boolean;
   activationCode: string;
+  createdAt?: string;
 }
 
 const Schema = mongoose.Schema;
@@ -58,6 +61,27 @@ UserSchema.pre('save', function (next) {
   const user = this;
   user.password = encrypt(user.password);
   next();
+});
+
+UserSchema.post('save', async function (doc, next) {
+  const user = doc;
+
+  console.log('Send Email to: ', user.email);
+  const contentMail = await renderMailHtml('registration-success.ejs', {
+    username: user.username,
+    fullName: user.fullName,
+    email: user.email,
+    createdAt: user.createdAt,
+    activationLink: `${CLIENT_HOST}/auth/activation?code=${user.activationCode}`,
+  });
+
+  await sendMail({
+    from: "admin-acara@noreplay.com",
+    to: "user.email",
+    subject: "Aktivasi Akun Anda",
+    html: contentMail,
+  })
+
 });
 
 UserSchema.methods.toJSON = function () {
