@@ -17,8 +17,24 @@
     }
   ],
   "paths": {
+    "/test-email": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        }
+      }
+    },
     "/auth/register": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -58,6 +74,9 @@
     },
     "/auth/login": {
       "post": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -89,6 +108,9 @@
     },
     "/auth/me": {
       "get": {
+        "tags": [
+          "Auth"
+        ],
         "description": "",
         "responses": {
           "200": {
@@ -106,6 +128,37 @@
             "bearerAuth": []
           }
         ]
+      }
+    },
+    "/auth/activation": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        },
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivationRequest"
+              }
+            },
+            "application/xml": {
+              "schema": {
+                "$ref": "#/components/schemas/ActivationRequest"
+              }
+            }
+          }
+        }
       }
     }
   },
@@ -131,6 +184,46 @@
         },
         "xml": {
           "name": "LoginRequest"
+        }
+      },
+      "RegisetrRequest": {
+        "type": "object",
+        "properties": {
+          "fullName": {
+            "type": "string",
+            "example": "Joni Putra"
+          },
+          "username": {
+            "type": "string",
+            "example": "jonip2026"
+          },
+          "email": {
+            "type": "string",
+            "example": "jonip2026@yopmail.com"
+          },
+          "password": {
+            "type": "string",
+            "example": "1234554321"
+          },
+          "confirmPassword": {
+            "type": "string",
+            "example": "1234554321"
+          }
+        },
+        "xml": {
+          "name": "RegisetrRequest"
+        }
+      },
+      "ActivationRequest": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string",
+            "example": "abcdef"
+          }
+        },
+        "xml": {
+          "name": "ActivationRequest"
         }
       }
     }

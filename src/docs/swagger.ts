@@ -29,6 +29,17 @@ const doc = {
         identifier: 'basuputra',
         password: '12344321',
       },
+      RegisetrRequest: {
+        fullName: 'Joni Putra',
+        username: 'jonip2026',
+        email: 'jonip2026@yopmail.com',
+        password: '1234554321',
+        confirmPassword: '1234554321',
+      },
+      ActivationRequest: {
+        code: "abcdef",
+        
+      }
     },
   },
 };
