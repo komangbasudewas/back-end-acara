@@ -45,13 +45,13 @@ export default {
     /**
      #swagger.tags = ['Auth']
      */
-    const { username, email, fullName, password, confirmPassword } =
+    const { username, fullName, email, password, confirmPassword } =
       req.body as unknown as TRegister;
 
     try {
       await registerValidateSchema.validate({
-        fullName,
         username,
+        fullName,
         email,
         password,
         confirmPassword,
@@ -97,6 +97,7 @@ export default {
             username: identifier,
           },
         ],
+        isActive: true,
       });
 
       if (!userByIdentifier) {

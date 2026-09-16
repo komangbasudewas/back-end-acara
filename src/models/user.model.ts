@@ -67,24 +67,29 @@ UserSchema.pre('save', function (next) {
 });
 
 UserSchema.post('save', async function (doc, next) {
-  const user = doc;
+  try {
+    const user = doc;
 
-  console.log('Send Email to: ', user.email);
-  const contentMail = await renderMailHtml('registration-success.ejs', {
-    username: user.username,
-    fullName: user.fullName,
-    email: user.email,
-    createdAt: user.createdAt,
-    activationLink: `${CLIENT_HOST}/auth/activation?code=${user.activationCode}`,
-  });
+    console.log('Send Email to: ', user.email);
+    const contentMail = await renderMailHtml('registration-success.ejs', {
+      username: user.username,
+      fullName: user.fullName,
+      email: user.email,
+      createdAt: user.createdAt,
+      activationLink: `${CLIENT_HOST}/auth/activation?code=${user.activationCode}`,
+    });
 
-  await sendMail({
-    from: EMAIL_SMTP_USER,
-    to: "user.email",
-    subject: "Aktivasi Akun Anda",
-    html: contentMail,
-  })
-
+    await sendMail({
+      from: EMAIL_SMTP_USER,
+      to: user.email,
+      subject: 'Aktivasi Akun Anda',
+      html: contentMail,
+    });
+  } catch (error) {
+    console.log(error);
+  } finally {
+    next();
+  }
 });
 
 UserSchema.methods.toJSON = function () {

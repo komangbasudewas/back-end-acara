@@ -17,19 +17,6 @@
     }
   ],
   "paths": {
-    "/test-email": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        }
-      }
-    },
     "/auth/register": {
       "post": {
         "tags": [
@@ -53,10 +40,10 @@
                   "username": {
                     "example": "any"
                   },
-                  "email": {
+                  "fullName": {
                     "example": "any"
                   },
-                  "fullName": {
+                  "email": {
                     "example": "any"
                   },
                   "password": {
