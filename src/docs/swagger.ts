@@ -3,7 +3,7 @@ import swaggerAutogen from 'swagger-autogen';
 const doc = {
   info: {
     version: 'v0.0.1',
-    titile: 'Dokumentasi API ACARA',
+    title: 'Dokumentasi API ACARA',
     description: 'Dokumentasi API ACARA',
   },
 
@@ -29,7 +29,7 @@ const doc = {
         identifier: 'basuputra',
         password: '12344321',
       },
-      RegisetrRequest: {
+      RegisterRequest: {
         fullName: 'Joni Putra',
         username: 'jonip2026',
         email: 'jonip2026@yopmail.com',

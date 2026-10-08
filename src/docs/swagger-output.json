@@ -2,9 +2,8 @@
   "openapi": "3.0.0",
   "info": {
     "version": "v0.0.1",
-    "titile": "Dokumentasi API ACARA",
-    "description": "Dokumentasi API ACARA",
-    "title": "REST API"
+    "title": "Dokumentasi API ACARA",
+    "description": "Dokumentasi API ACARA"
   },
   "servers": [
     {
@@ -173,7 +172,7 @@
           "name": "LoginRequest"
         }
       },
-      "RegisetrRequest": {
+      "RegisterRequest": {
         "type": "object",
         "properties": {
           "fullName": {
@@ -198,7 +197,7 @@
           }
         },
         "xml": {
-          "name": "RegisetrRequest"
+          "name": "RegisterRequest"
         }
       },
       "ActivationRequest": {

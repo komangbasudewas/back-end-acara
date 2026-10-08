@@ -1,7 +1,7 @@
 import express from 'express';
 import authController from '../controllers/auth.controller';
 import authMiddleware from '../middlewares/auth.middleware';
-import { renderMailHtml, sendMail } from '../utils/mail/mail';
+// import { renderMailHtml, sendMail } from '../utils/mail/mail';
 
 const router = express.Router();
 
